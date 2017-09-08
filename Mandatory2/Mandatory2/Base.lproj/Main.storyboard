@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="QrT-LV-r6w">
             <objects>
-                <viewController id="eVf-33-E8O" sceneMemberID="viewController">
+                <viewController id="eVf-33-E8O" customClass="StartViewController" customModule="Mandatory2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v5m-Gv-mYX"/>
                         <viewControllerLayoutGuide type="bottom" id="eJJ-2r-fzc"/>
@@ -53,18 +53,33 @@
                                     <segue destination="pMh-BU-S6c" kind="show" id="K90-cQ-IaR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQf-ab-VMH">
+                                <rect key="frame" x="16" y="156" width="288" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="ZEx-oc-ONj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LQf-ab-VMH" firstAttribute="leading" secondItem="ScZ-ue-Mcp" secondAttribute="leadingMargin" id="8oG-TX-7Gq"/>
                             <constraint firstItem="A41-5I-e2o" firstAttribute="top" secondItem="v5m-Gv-mYX" secondAttribute="bottom" constant="95" id="JOc-nv-jkg"/>
                             <constraint firstItem="sUo-Ah-IMu" firstAttribute="leading" secondItem="ScZ-ue-Mcp" secondAttribute="leadingMargin" id="KBv-Jd-kU6"/>
                             <constraint firstItem="A41-5I-e2o" firstAttribute="leading" secondItem="ScZ-ue-Mcp" secondAttribute="leadingMargin" id="Lgx-oo-qbX"/>
                             <constraint firstItem="uBa-Co-iHK" firstAttribute="trailing" secondItem="ScZ-ue-Mcp" secondAttribute="trailingMargin" id="NM2-tJ-9uU"/>
                             <constraint firstItem="eJJ-2r-fzc" firstAttribute="top" secondItem="sUo-Ah-IMu" secondAttribute="bottom" constant="8" id="aJA-SK-DVE"/>
                             <constraint firstItem="A41-5I-e2o" firstAttribute="trailing" secondItem="ScZ-ue-Mcp" secondAttribute="trailingMargin" id="hQk-L0-NGn"/>
+                            <constraint firstItem="LQf-ab-VMH" firstAttribute="top" secondItem="A41-5I-e2o" secondAttribute="bottom" constant="7.5" id="jmn-ma-2dK"/>
+                            <constraint firstItem="LQf-ab-VMH" firstAttribute="trailing" secondItem="ScZ-ue-Mcp" secondAttribute="trailingMargin" id="xSI-gC-STf"/>
                             <constraint firstItem="eJJ-2r-fzc" firstAttribute="top" secondItem="uBa-Co-iHK" secondAttribute="bottom" constant="8" id="xqV-u6-acz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userLbl" destination="LQf-ab-VMH" id="uzW-2a-ujt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axF-Mo-aOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,6 +162,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Post Note"/>
+                                <connections>
+                                    <action selector="Post:" destination="pMh-BU-S6c" eventType="touchUpInside" id="cP7-Pm-zZO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,6 +192,7 @@
                     <connections>
                         <outlet property="descLbl" destination="Sb4-BE-ZiV" id="LoS-vj-Uxs"/>
                         <outlet property="titleLbl" destination="Ijv-d8-OZi" id="Ffr-qx-QCW"/>
+                        <segue destination="zHC-kb-g3i" kind="show" identifier="viewPosts" id="C5W-PU-Rhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhU-WB-zuj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,9 +207,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Xn0-ak-KkF">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="qnU-X3-ewv">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qnU-X3-ewv" id="Lp4-u3-PcX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -203,18 +227,26 @@
                             <outlet property="delegate" destination="zHC-kb-g3i" id="Cjl-Ti-3Pb"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Back" id="0RV-CF-zsI">
+                            <connections>
+                                <segue destination="eVf-33-E8O" kind="show" id="AOX-5b-XcP"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segue" id="Qj4-3r-4dx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bU-yc-AB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-954" y="36"/>
+            <point key="canvasLocation" x="-954.375" y="35.91549295774648"/>
         </scene>
-        <!--View Controller-->
+        <!--Post View View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mandatory2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostViewViewController" customModule="Mandatory2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -238,7 +270,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="322" id="ILL-jT-sZg"/>
                                 </constraints>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -278,6 +310,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z2h-rJ-YLk"/>
+        <segue reference="AOX-5b-XcP"/>
+        <segue reference="C5W-PU-Rhc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,11 +7,38 @@
 //
 
 import UIKit
+import Firebase
 
 class PostViewController: UIViewController {
 
     @IBOutlet weak var titleLbl: UITextField!
     @IBOutlet weak var descLbl: UITextField!
+    
+    @IBAction func Post(_ sender: UIButton) {
+        let title = titleLbl.text
+        let desc = descLbl.text
+        let userid = Auth.auth().currentUser?.uid
+        var ref: DatabaseReference
+        //print(title,desc,userid)
+        
+        ref = Database.database().reference()
+        let post =  [
+            "userid": userid!,
+            "title": title,
+            "description":desc
+        ]
+        let childUpdate = ["/notes/\(title!)":post]
+        ref.updateChildValues(childUpdate)
+        
+        let alert = UIAlertController(title: "Post", message: "The post had been stored, proceede to post's view", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+            //NSLog("The \"OK\" alert occured.")
+            self.performSegue(withIdentifier: "viewPosts", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

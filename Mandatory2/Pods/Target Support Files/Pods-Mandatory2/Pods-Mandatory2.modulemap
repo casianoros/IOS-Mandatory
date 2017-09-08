@@ -1,0 +1,6 @@
+framework module Pods_Mandatory2 {
+  umbrella header "Pods-Mandatory2-umbrella.h"
+
+  export *
+  module * { export * }
+}
